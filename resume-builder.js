@@ -214,6 +214,15 @@ loadSample.addEventListener("click", () => {
     document.querySelector(`#${id}`).value = value;
   });
   renderResume();
+  document.querySelector("#resume-builder").scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
+  const original = loadSample.textContent;
+  loadSample.textContent = "Sample Loaded";
+  window.setTimeout(() => {
+    loadSample.textContent = original;
+  }, 1200);
 });
 
 renderResume();
