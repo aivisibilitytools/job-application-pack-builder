@@ -17,6 +17,7 @@
       <nav>
         <a href="#builder">Builder</a>
         <a href="#splitter">Splitter</a>
+        <a href="resume-builder.html">Resume Builder</a>
         <a href="#career-tools">Career Tools</a>
         <a href="#kit">Resume Kit</a>
         <a href="privacy.html">Privacy</a>
@@ -35,6 +36,7 @@
           </p>
           <div class="hero-actions">
             <a class="button primary" href="#builder">Build Application Pack</a>
+            <a class="button secondary" href="resume-builder.html">Create Resume PDF</a>
             <a class="button secondary" href="#kit">View Resume Kit</a>
           </div>
         </div>
@@ -49,6 +51,7 @@
             <li>Merge PDFs locally</li>
             <li>Move files up or down</li>
             <li>Split selected page ranges</li>
+            <li>Create a US-style resume PDF</li>
             <li>Download a single application pack</li>
             <li>No account, no upload, no server</li>
           </ul>
@@ -252,6 +255,84 @@
             <button class="button secondary full" id="copyCoverLetter" type="button">
               Copy Cover Letter
             </button>
+          </form>
+
+          <form class="card form-card wide-card" id="keywordForm">
+            <p class="eyebrow">Job description match</p>
+            <h3>Resume keyword gap checker</h3>
+            <div class="inline-fields">
+              <label>
+                Paste job description
+                <textarea
+                  id="jobDescription"
+                  rows="7"
+                  placeholder="Paste the job post requirements, responsibilities, and qualifications."
+                ></textarea>
+              </label>
+              <label>
+                Paste resume text
+                <textarea
+                  id="resumeText"
+                  rows="7"
+                  placeholder="Paste your resume summary, skills, and recent experience."
+                ></textarea>
+              </label>
+            </div>
+            <button class="button primary full" type="submit">
+              Check Keyword Match
+            </button>
+            <div class="report-output" id="keywordOutput">
+              Paste a job description and resume text to find missing keywords.
+            </div>
+            <button class="button secondary full" id="copyKeywordReport" type="button">
+              Copy Keyword Report
+            </button>
+          </form>
+
+          <form class="card form-card" id="interviewForm">
+            <p class="eyebrow">Interview prep</p>
+            <h3>Interview question generator</h3>
+            <label>
+              Target role
+              <input id="interviewRole" type="text" placeholder="Product Manager" />
+            </label>
+            <label>
+              Company or industry
+              <input id="interviewCompany" type="text" placeholder="Fintech startup" />
+            </label>
+            <label>
+              Key skill or project
+              <input id="interviewSkill" type="text" placeholder="User onboarding improvement" />
+            </label>
+            <button class="button primary full" type="submit">
+              Generate Questions
+            </button>
+            <div class="report-output compact" id="interviewOutput">
+              Generate practice questions before the recruiter call.
+            </div>
+          </form>
+
+          <form class="card form-card" id="followupForm">
+            <p class="eyebrow">Follow-up</p>
+            <h3>Recruiter follow-up email</h3>
+            <label>
+              Recruiter or company
+              <input id="followupCompany" type="text" placeholder="Stripe recruiting team" />
+            </label>
+            <label>
+              Role
+              <input id="followupRole" type="text" placeholder="Product Manager" />
+            </label>
+            <label>
+              Days since applying
+              <input id="followupDays" type="number" min="1" value="7" />
+            </label>
+            <button class="button primary full" type="submit">
+              Generate Follow-up
+            </button>
+            <div class="report-output compact" id="followupOutput">
+              Create a polite follow-up after applying or interviewing.
+            </div>
           </form>
         </div>
       </section>

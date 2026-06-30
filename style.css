@@ -257,6 +257,7 @@ label {
 }
 
 input,
+select,
 textarea {
   background: #fbfcff;
   border: 1px solid var(--line);
@@ -267,6 +268,10 @@ textarea {
   margin-top: 8px;
   padding: 12px 13px;
   width: 100%;
+}
+
+select {
+  appearance: none;
 }
 
 textarea {
@@ -392,6 +397,184 @@ textarea {
   line-height: 1;
 }
 
+.resume-hero {
+  min-height: 520px;
+}
+
+.resume-builder-grid {
+  align-items: start;
+  display: grid;
+  gap: 24px;
+  grid-template-columns: minmax(320px, 0.9fr) minmax(420px, 1.1fr);
+  margin: 0 auto;
+  max-width: 1380px;
+}
+
+.resume-editor {
+  box-shadow: none;
+}
+
+.form-section {
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 22px;
+  padding-bottom: 10px;
+}
+
+.form-section:last-child {
+  border-bottom: 0;
+  margin-bottom: 0;
+}
+
+.form-section h3 {
+  font-size: 18px;
+  margin-bottom: 14px;
+}
+
+.resume-preview-panel {
+  position: sticky;
+  top: 92px;
+}
+
+.preview-actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.resume-preview {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  box-shadow: 0 18px 40px rgba(21, 24, 39, 0.08);
+  color: #111827;
+  min-height: 960px;
+  padding: 44px;
+}
+
+.resume-empty {
+  color: var(--muted);
+  display: grid;
+  min-height: 860px;
+  place-items: center;
+  text-align: center;
+}
+
+.resume-header {
+  border-bottom: 2px solid #111827;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  text-align: center;
+}
+
+.resume-header h2 {
+  font-size: 32px;
+  letter-spacing: 0;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.resume-title {
+  color: #334155;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.resume-contact {
+  color: #475569;
+  font-size: 12px;
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
+.resume-body {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: minmax(0, 1fr) 220px;
+}
+
+.resume-section {
+  margin-bottom: 18px;
+}
+
+.resume-section h3 {
+  border-bottom: 1px solid #cbd5e1;
+  color: #0f172a;
+  font-size: 13px;
+  letter-spacing: 0;
+  margin-bottom: 8px;
+  padding-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.resume-section p,
+.resume-section li {
+  color: #1f2937;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.resume-role {
+  display: grid;
+  gap: 2px;
+  margin-bottom: 6px;
+}
+
+.resume-role span {
+  color: #64748b;
+  font-size: 12px;
+}
+
+.resume-preview ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.skill-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.skill-pills span {
+  background: #eef2ff;
+  border: 1px solid #c7d2fe;
+  border-radius: 6px;
+  color: #1e3a8a;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 5px 7px;
+}
+
+.resume-template-sidebar {
+  border-top: 10px solid var(--accent);
+}
+
+.resume-template-sidebar .resume-header {
+  text-align: left;
+}
+
+.resume-template-sidebar .resume-body {
+  grid-template-columns: 230px minmax(0, 1fr);
+}
+
+.resume-template-sidebar .resume-side {
+  background: #f1f5f9;
+  border-radius: 8px;
+  grid-row: 1;
+  padding: 16px;
+}
+
+.resume-template-sidebar .resume-main {
+  grid-column: 2;
+}
+
+.resume-template-project .resume-header {
+  border-bottom-color: var(--green);
+}
+
+.resume-template-project .resume-section h3 {
+  color: var(--green);
+}
+
 .featured {
   border-color: var(--amber);
 }
@@ -425,6 +608,7 @@ footer a {
   .tool-grid,
   .price-grid,
   .mini-tool-grid,
+  .resume-builder-grid,
   .inline-fields {
     grid-template-columns: 1fr;
   }
@@ -439,5 +623,48 @@ footer a {
 
   .file-row {
     grid-template-columns: 1fr;
+  }
+
+  .resume-preview-panel {
+    position: static;
+  }
+
+  .resume-preview {
+    padding: 24px;
+  }
+
+  .resume-body,
+  .resume-template-sidebar .resume-body {
+    grid-template-columns: 1fr;
+  }
+
+  .resume-template-sidebar .resume-main {
+    grid-column: auto;
+  }
+}
+
+@media print {
+  body {
+    background: #ffffff;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  #resumePreview,
+  #resumePreview * {
+    visibility: visible;
+  }
+
+  #resumePreview {
+    border: 0;
+    box-shadow: none;
+    left: 0;
+    min-height: auto;
+    padding: 0.45in;
+    position: absolute;
+    top: 0;
+    width: 100%;
   }
 }

@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Free US Resume PDF Builder</title>
+    <meta
+      name="description"
+      content="Create a clean US-style resume PDF with ATS-friendly sections, quantified bullet points, skills, projects, education, and multiple templates."
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="index.html">Application Pack Builder</a>
+      <nav>
+        <a href="index.html#builder">Builder</a>
+        <a href="index.html#splitter">Splitter</a>
+        <a href="resume-builder.html">Resume Builder</a>
+        <a href="index.html#career-tools">Career Tools</a>
+        <a href="index.html#kit">Resume Kit</a>
+        <a href="privacy.html">Privacy</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero resume-hero">
+        <div class="hero-copy">
+          <p class="eyebrow">US resume builder</p>
+          <h1>Create a polished resume PDF from your browser.</h1>
+          <p class="subhead">
+            Fill in US-style resume sections, choose a template, preview the
+            result, and save it as PDF using your browser print dialog. Your
+            information stays on this device.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#resume-builder">Start Resume</a>
+            <button class="button secondary" id="loadSample" type="button">
+              Load Sample
+            </button>
+          </div>
+        </div>
+        <div class="hero-panel">
+          <p class="eyebrow">US resume rules</p>
+          <ul>
+            <li>No photo, date of birth, marital status, or full street address</li>
+            <li>Use City, State and professional contact links</li>
+            <li>Lead with a role-specific summary and core skills</li>
+            <li>Write bullets with action, scope, and measurable outcome</li>
+            <li>Keep the first version to one page when possible</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="resume-builder" class="tool-section subtle">
+        <div class="section-heading">
+          <p class="eyebrow">Free tool</p>
+          <h2>US-style resume PDF builder</h2>
+          <p>
+            Complete the fields on the left. The preview updates instantly on
+            the right. Use Print / Save as PDF when you are ready.
+          </p>
+        </div>
+
+        <div class="resume-builder-grid">
+          <form class="card form-card resume-editor" id="resumeForm">
+            <div class="form-section">
+              <h3>Template</h3>
+              <label>
+                Resume template
+                <select id="resumeTemplate">
+                  <option value="ats">ATS Clean</option>
+                  <option value="sidebar">Modern Sidebar</option>
+                  <option value="project">Project Focused</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="form-section">
+              <h3>Contact</h3>
+              <div class="inline-fields">
+                <label>
+                  Full name
+                  <input id="resumeName" type="text" placeholder="Jane Chen" />
+                </label>
+                <label>
+                  Target title
+                  <input id="resumeTitle" type="text" placeholder="Product Manager" />
+                </label>
+              </div>
+              <div class="inline-fields">
+                <label>
+                  Email
+                  <input id="resumeEmail" type="email" placeholder="jane@email.com" />
+                </label>
+                <label>
+                  Phone
+                  <input id="resumePhone" type="text" placeholder="(555) 123-4567" />
+                </label>
+              </div>
+              <div class="inline-fields">
+                <label>
+                  Location
+                  <input id="resumeLocation" type="text" placeholder="Austin, TX" />
+                </label>
+                <label>
+                  LinkedIn
+                  <input id="resumeLinkedin" type="text" placeholder="linkedin.com/in/janechen" />
+                </label>
+              </div>
+              <label>
+                Portfolio or GitHub
+                <input id="resumePortfolio" type="text" placeholder="janechen.com" />
+              </label>
+            </div>
+
+            <div class="form-section">
+              <h3>Professional Summary</h3>
+              <label>
+                2-3 sentence summary
+                <textarea
+                  id="resumeSummary"
+                  rows="4"
+                  placeholder="Product manager with 4+ years of experience improving onboarding, activation, and retention for B2B SaaS products."
+                ></textarea>
+              </label>
+              <label>
+                Core skills, separated by commas
+                <input
+                  id="resumeSkills"
+                  type="text"
+                  placeholder="Product strategy, SQL, A/B testing, onboarding, stakeholder management"
+                />
+              </label>
+            </div>
+
+            <div class="form-section">
+              <h3>Experience</h3>
+              <div class="inline-fields">
+                <label>
+                  Company
+                  <input id="expCompany" type="text" placeholder="Acme SaaS" />
+                </label>
+                <label>
+                  Job title
+                  <input id="expTitle" type="text" placeholder="Product Manager" />
+                </label>
+              </div>
+              <div class="inline-fields">
+                <label>
+                  Location
+                  <input id="expLocation" type="text" placeholder="Remote" />
+                </label>
+                <label>
+                  Dates
+                  <input id="expDates" type="text" placeholder="Jan 2021 - Present" />
+                </label>
+              </div>
+              <label>
+                Bullet points, one per line
+                <textarea
+                  id="expBullets"
+                  rows="5"
+                  placeholder="Improved onboarding completion by 18% by redesigning activation emails and first-run product prompts.
+Partnered with engineering and sales to launch a self-serve trial motion that generated 240 qualified leads in one quarter."
+                ></textarea>
+              </label>
+            </div>
+
+            <div class="form-section">
+              <h3>Projects</h3>
+              <label>
+                Project bullets, one per line
+                <textarea
+                  id="resumeProjects"
+                  rows="4"
+                  placeholder="Built a customer health dashboard used by sales and success teams to prioritize expansion accounts.
+Created a churn-risk segmentation model using product usage, support tickets, and renewal dates."
+                ></textarea>
+              </label>
+            </div>
+
+            <div class="form-section">
+              <h3>Education and Extras</h3>
+              <div class="inline-fields">
+                <label>
+                  Education
+                  <input id="resumeEducation" type="text" placeholder="B.S. Business Analytics, University of Texas" />
+                </label>
+                <label>
+                  Certifications
+                  <input id="resumeCerts" type="text" placeholder="Google Analytics, Scrum Product Owner" />
+                </label>
+              </div>
+            </div>
+          </form>
+
+          <aside class="resume-preview-panel">
+            <div class="preview-actions">
+              <button class="button primary" id="printResume" type="button">
+                Print / Save as PDF
+              </button>
+              <button class="button secondary" id="copyResumeText" type="button">
+                Copy Resume Text
+              </button>
+            </div>
+            <article class="resume-preview resume-template-ats" id="resumePreview">
+              <div class="resume-empty">Fill in the form to preview your resume.</div>
+            </article>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Application Pack Builder. Privacy-first resume and PDF tools.</p>
+      <a href="privacy.html">Privacy Policy</a>
+    </footer>
+
+    <script src="resume-builder.js"></script>
+  </body>
+</html>
