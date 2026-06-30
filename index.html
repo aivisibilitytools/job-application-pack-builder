@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Free Job Application PDF Pack Builder</title>
+    <meta
+      name="description"
+      content="Merge resumes, cover letters, portfolios, certificates, and references into one job application PDF pack. Split PDF page ranges in your browser. No upload required."
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="index.html">Application Pack Builder</a>
+      <nav>
+        <a href="#builder">Builder</a>
+        <a href="#splitter">Splitter</a>
+        <a href="#kit">Resume Kit</a>
+        <a href="privacy.html">Privacy</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">For job seekers and career switchers</p>
+          <h1>Build a clean job application PDF pack in your browser.</h1>
+          <p class="subhead">
+            Combine your resume, cover letter, portfolio, certificates, and
+            references into one polished PDF. Reorder files, split page ranges,
+            and download everything without uploading private documents.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#builder">Build Application Pack</a>
+            <a class="button secondary" href="#kit">View Resume Kit</a>
+          </div>
+        </div>
+        <div class="hero-panel" aria-label="Application pack preview">
+          <div class="document-stack">
+            <div class="doc-card resume">Resume</div>
+            <div class="doc-card cover">Cover Letter</div>
+            <div class="doc-card portfolio">Portfolio</div>
+            <div class="doc-card refs">References</div>
+          </div>
+          <ul>
+            <li>Merge PDFs locally</li>
+            <li>Move files up or down</li>
+            <li>Split selected page ranges</li>
+            <li>Download a single application pack</li>
+            <li>No account, no upload, no server</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="builder" class="tool-section">
+        <div class="section-heading">
+          <p class="eyebrow">Free tool</p>
+          <h2>Resume + cover letter PDF merger</h2>
+          <p>
+            Add PDF files in the order you want recruiters to read them. The
+            merge happens locally in your browser.
+          </p>
+        </div>
+
+        <div class="tool-grid">
+          <form class="card form-card" id="mergeForm">
+            <label>
+              Application pack name
+              <input id="packName" type="text" value="job-application-pack" />
+            </label>
+
+            <label class="drop-zone" for="pdfFiles">
+              <span>Upload resume, cover letter, portfolio, or certificates</span>
+              <strong>Select PDF files</strong>
+              <input id="pdfFiles" type="file" accept="application/pdf" multiple />
+            </label>
+
+            <div class="file-list" id="fileList">
+              <p class="empty-state">No PDFs added yet.</p>
+            </div>
+
+            <button class="button primary full" type="submit">Merge PDFs</button>
+            <p class="helper">
+              Tip: Put your resume first, then cover letter, then portfolio or
+              supporting documents.
+            </p>
+          </form>
+
+          <aside class="card result-card">
+            <p class="eyebrow">Output</p>
+            <h3>Your application pack</h3>
+            <div class="report-output" id="mergeStatus">
+              Upload at least two PDFs to create a downloadable application
+              pack.
+            </div>
+            <a id="downloadMerged" class="button secondary full disabled" download>
+              Download merged PDF
+            </a>
+          </aside>
+        </div>
+      </section>
+
+      <section id="splitter" class="tool-section subtle">
+        <div class="section-heading">
+          <p class="eyebrow">Free tool</p>
+          <h2>PDF page range splitter</h2>
+          <p>
+            Need only pages 1-2 of a long portfolio, or just one certificate?
+            Extract selected pages before building the final pack.
+          </p>
+        </div>
+
+        <div class="tool-grid">
+          <form class="card form-card" id="splitForm">
+            <label>
+              Upload one PDF to split
+              <input id="splitFile" type="file" accept="application/pdf" />
+            </label>
+
+            <label>
+              Pages to keep
+              <input
+                id="pageRanges"
+                type="text"
+                placeholder="Example: 1-2, 5, 7-9"
+              />
+            </label>
+
+            <label>
+              Output file name
+              <input id="splitName" type="text" value="selected-pages" />
+            </label>
+
+            <button class="button primary full" type="submit">Extract Pages</button>
+            <p class="helper">
+              Use commas for multiple ranges. Example: 1-2, 4, 6-8.
+            </p>
+          </form>
+
+          <aside class="card result-card">
+            <p class="eyebrow">Output</p>
+            <h3>Your extracted PDF</h3>
+            <div class="report-output" id="splitStatus">
+              Upload a PDF and enter page ranges to extract selected pages.
+            </div>
+            <a id="downloadSplit" class="button secondary full disabled" download>
+              Download extracted PDF
+            </a>
+          </aside>
+        </div>
+      </section>
+
+      <section id="kit" class="pricing">
+        <div class="section-heading">
+          <p class="eyebrow">Paid download idea</p>
+          <h2>Turn the free tool into a resume template pack</h2>
+          <p>
+            Sell a low-priced kit for job seekers who need more than a PDF
+            merger: resume structure, cover letters, follow-up emails, and an
+            application tracker.
+          </p>
+        </div>
+
+        <div class="price-grid">
+          <div class="card price-card">
+            <h3>Free Application Builder</h3>
+            <p class="price">$0</p>
+            <ul>
+              <li>Merge PDFs locally</li>
+              <li>Extract page ranges</li>
+              <li>Download application pack</li>
+              <li>No signup required</li>
+            </ul>
+          </div>
+
+          <div class="card price-card featured">
+            <h3>Resume Application Kit</h3>
+            <p class="price">$12</p>
+            <ul>
+              <li>ATS resume checklist</li>
+              <li>Cover letter templates</li>
+              <li>Application tracker spreadsheet</li>
+              <li>Follow-up email scripts</li>
+              <li>Portfolio PDF order templates</li>
+            </ul>
+            <a
+              class="button primary full"
+              href="mailto:zzd050131@gmail.com?subject=Resume%20Application%20Kit&body=Hi%2C%20I%20want%20to%20buy%20the%20Resume%20Application%20Kit.%0A%0AMy%20target%20job%3A%20%0AMy%20main%20application%20problem%3A%20"
+            >
+              Get the $12 Kit
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Application Pack Builder. Privacy-first PDF tools for job seekers.</p>
+      <a href="privacy.html">Privacy Policy</a>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
