@@ -118,10 +118,12 @@
 
         <div class="tool-grid">
           <form class="card form-card" id="splitForm">
-            <label>
-              Upload one PDF to split
+            <label class="drop-zone" for="splitFile">
+              <span>Upload one PDF to split</span>
+              <strong>Select PDF file</strong>
               <input id="splitFile" type="file" accept="application/pdf" />
             </label>
+            <p class="helper" id="splitFileName">No PDF selected yet.</p>
 
             <label>
               Pages to keep

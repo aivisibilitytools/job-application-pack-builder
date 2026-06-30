@@ -8,6 +8,7 @@ const downloadMerged = document.querySelector("#downloadMerged");
 
 const splitForm = document.querySelector("#splitForm");
 const splitFile = document.querySelector("#splitFile");
+const splitFileName = document.querySelector("#splitFileName");
 const pageRanges = document.querySelector("#pageRanges");
 const splitStatus = document.querySelector("#splitStatus");
 const downloadSplit = document.querySelector("#downloadSplit");
@@ -19,6 +20,13 @@ const atsOutput = document.querySelector("#atsOutput");
 const coverForm = document.querySelector("#coverForm");
 const coverOutput = document.querySelector("#coverOutput");
 const copyCoverLetter = document.querySelector("#copyCoverLetter");
+const keywordForm = document.querySelector("#keywordForm");
+const keywordOutput = document.querySelector("#keywordOutput");
+const copyKeywordReport = document.querySelector("#copyKeywordReport");
+const interviewForm = document.querySelector("#interviewForm");
+const interviewOutput = document.querySelector("#interviewOutput");
+const followupForm = document.querySelector("#followupForm");
+const followupOutput = document.querySelector("#followupOutput");
 
 let selectedFiles = [];
 let activeUrls = [];
@@ -86,6 +94,11 @@ fileList.addEventListener("click", (event) => {
     selectedFiles.splice(index, 1);
     updateFileList();
   }
+});
+
+splitFile.addEventListener("change", () => {
+  const file = splitFile.files[0];
+  splitFileName.textContent = file ? `Selected: ${file.name}` : "No PDF selected yet.";
 });
 
 const createDownload = (anchor, bytes, fileName) => {
@@ -289,4 +302,103 @@ Best regards,
 
 copyCoverLetter.addEventListener("click", () => {
   copyText(coverOutput.textContent, copyCoverLetter, "Copied");
+});
+
+const stopWords = new Set([
+  "about", "after", "also", "and", "are", "as", "at", "be", "by", "can",
+  "for", "from", "has", "have", "in", "into", "is", "it", "of", "on",
+  "or", "our", "that", "the", "their", "this", "to", "with", "will", "you",
+  "your", "we", "a", "an", "if", "not", "more", "all", "new", "using",
+]);
+
+const extractKeywords = (text) => {
+  const counts = new Map();
+  const words = text
+    .toLowerCase()
+    .replace(/[^a-z0-9+#.\s-]/g, " ")
+    .split(/\s+/)
+    .map((word) => word.replace(/^-+|-+$/g, ""))
+    .filter((word) => word.length > 2 && !stopWords.has(word));
+
+  words.forEach((word) => counts.set(word, (counts.get(word) || 0) + 1));
+  return [...counts.entries()]
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    .slice(0, 18)
+    .map(([word]) => word);
+};
+
+keywordForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const jdText = document.querySelector("#jobDescription").value;
+  const resumeTextValue = document.querySelector("#resumeText").value.toLowerCase();
+  const keywords = extractKeywords(jdText);
+
+  if (!keywords.length || !resumeTextValue.trim()) {
+    keywordOutput.textContent =
+      "Paste both a job description and resume text to calculate keyword gaps.";
+    return;
+  }
+
+  const matched = keywords.filter((word) => resumeTextValue.includes(word));
+  const missing = keywords.filter((word) => !resumeTextValue.includes(word));
+  const score = Math.round((matched.length / keywords.length) * 100);
+
+  keywordOutput.textContent = [
+    `Keyword match score: ${score}/100`,
+    "",
+    "Matched keywords:",
+    matched.length ? matched.map((word) => `- ${word}`).join("\n") : "- None yet",
+    "",
+    "Missing keywords to consider adding naturally:",
+    missing.length ? missing.map((word) => `- ${word}`).join("\n") : "- No major gaps found",
+    "",
+    "Tip: add missing words only where they are true and specific to your experience.",
+  ].join("\n");
+});
+
+copyKeywordReport.addEventListener("click", () => {
+  copyText(keywordOutput.textContent, copyKeywordReport, "Copied");
+});
+
+interviewForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const role = document.querySelector("#interviewRole").value.trim() || "this role";
+  const company =
+    document.querySelector("#interviewCompany").value.trim() || "this company";
+  const skill =
+    document.querySelector("#interviewSkill").value.trim() || "your strongest project";
+
+  interviewOutput.textContent = [
+    `Practice questions for ${role} at ${company}:`,
+    "",
+    `1. Tell me about your experience with ${skill}.`,
+    `2. Why are you interested in ${company}?`,
+    `3. What would you improve in your first 30 days as a ${role}?`,
+    "4. Describe a time you worked with cross-functional teams.",
+    "5. What measurable result are you most proud of?",
+    "6. What is one weakness in your current experience, and how are you closing it?",
+    "",
+    "Answer tip: use Situation, Action, Result, then connect it back to the role.",
+  ].join("\n");
+});
+
+followupForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const company =
+    document.querySelector("#followupCompany").value.trim() || "hiring team";
+  const role = document.querySelector("#followupRole").value.trim() || "the role";
+  const days = document.querySelector("#followupDays").value || "7";
+
+  followupOutput.textContent = `Subject: Following up on my ${role} application
+
+Hi ${company},
+
+I hope you are doing well. I wanted to follow up on my application for the ${role} role, which I submitted about ${days} days ago.
+
+I am still very interested in the opportunity and would be happy to share any additional information that would be helpful.
+
+Thank you for your time and consideration.
+
+Best regards,
+[Your Name]`;
 });
