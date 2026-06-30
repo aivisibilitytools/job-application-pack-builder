@@ -9,6 +9,9 @@ pack.
 - Merge multiple PDFs in the browser
 - Move PDF files up or down before merging
 - Extract selected page ranges from a PDF
+- Generate recruiter-friendly resume and application pack file names
+- Score a resume against a basic ATS readiness checklist
+- Generate a simple cover letter starter from company, role, and proof points
 - No signup
 - No server upload
 - GitHub Pages compatible

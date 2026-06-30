@@ -219,12 +219,25 @@ li {
 }
 
 .tool-grid,
-.price-grid {
+.price-grid,
+.mini-tool-grid {
   display: grid;
   gap: 24px;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
   margin: 0 auto;
   max-width: 1180px;
+}
+
+.tool-grid,
+.price-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.mini-tool-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.wide-card {
+  grid-column: 1 / -1;
 }
 
 .subtle {
@@ -243,7 +256,8 @@ label {
   margin-bottom: 16px;
 }
 
-input {
+input,
+textarea {
   background: #fbfcff;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -253,6 +267,35 @@ input {
   margin-top: 8px;
   padding: 12px 13px;
   width: 100%;
+}
+
+textarea {
+  min-height: 112px;
+  resize: vertical;
+}
+
+.inline-fields {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.check-row {
+  align-items: flex-start;
+  background: #fbfcff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: auto minmax(0, 1fr);
+  line-height: 1.45;
+  margin-bottom: 10px;
+  padding: 12px;
+}
+
+.check-row input {
+  margin: 2px 0 0;
+  width: auto;
 }
 
 .drop-zone {
@@ -338,6 +381,10 @@ input {
   white-space: pre-wrap;
 }
 
+.report-output.compact {
+  min-height: 160px;
+}
+
 .price-card .price {
   color: var(--ink);
   font-size: 48px;
@@ -376,7 +423,9 @@ footer a {
 
   .hero,
   .tool-grid,
-  .price-grid {
+  .price-grid,
+  .mini-tool-grid,
+  .inline-fields {
     grid-template-columns: 1fr;
   }
 

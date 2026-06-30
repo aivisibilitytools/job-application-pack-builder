@@ -11,6 +11,14 @@ const splitFile = document.querySelector("#splitFile");
 const pageRanges = document.querySelector("#pageRanges");
 const splitStatus = document.querySelector("#splitStatus");
 const downloadSplit = document.querySelector("#downloadSplit");
+const filenameForm = document.querySelector("#filenameForm");
+const filenameOutput = document.querySelector("#filenameOutput");
+const copyFilenames = document.querySelector("#copyFilenames");
+const atsForm = document.querySelector("#atsForm");
+const atsOutput = document.querySelector("#atsOutput");
+const coverForm = document.querySelector("#coverForm");
+const coverOutput = document.querySelector("#coverOutput");
+const copyCoverLetter = document.querySelector("#copyCoverLetter");
 
 let selectedFiles = [];
 let activeUrls = [];
@@ -198,3 +206,87 @@ splitForm.addEventListener("submit", async (event) => {
 });
 
 updateFileList();
+
+const slugPart = (value) =>
+  value
+    .trim()
+    .replace(/[^a-zA-Z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    || "Your-Name";
+
+const copyText = async (text, button, label) => {
+  if (!text.trim()) return;
+  try {
+    await navigator.clipboard.writeText(text);
+    const original = button.textContent;
+    button.textContent = label;
+    window.setTimeout(() => {
+      button.textContent = original;
+    }, 1200);
+  } catch (error) {
+    button.textContent = "Select and copy manually";
+  }
+};
+
+filenameForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const name = slugPart(document.querySelector("#candidateName").value);
+  const role = slugPart(document.querySelector("#targetRole").value);
+  const company = slugPart(document.querySelector("#targetCompany").value);
+
+  filenameOutput.textContent = [
+    `${name}-${role}-Resume.pdf`,
+    `${name}-${company}-${role}-Cover-Letter.pdf`,
+    `${name}-${company}-Application-Pack.pdf`,
+    `${name}-${role}-Portfolio.pdf`,
+  ].join("\n");
+});
+
+copyFilenames.addEventListener("click", () => {
+  copyText(filenameOutput.textContent, copyFilenames, "Copied");
+});
+
+atsForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const checked = [...atsForm.querySelectorAll("input[name='ats']:checked")];
+  const total = atsForm.querySelectorAll("input[name='ats']").length;
+  const score = Math.round((checked.length / total) * 100);
+  const missing = [...atsForm.querySelectorAll("input[name='ats']:not(:checked)")].map(
+    (item) => `- ${item.value}`,
+  );
+
+  atsOutput.textContent = [
+    `ATS readiness score: ${score}/100`,
+    "",
+    checked.length === total
+      ? "Strong basics. Now tailor keywords to each job description."
+      : "Fix these before sending your resume:",
+    ...(missing.length ? missing : []),
+    "",
+    "Tip: after improving your resume, rebuild the PDF pack with your resume first.",
+  ].join("\n");
+});
+
+coverForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const company = document.querySelector("#letterCompany").value.trim() || "[Company]";
+  const role = document.querySelector("#letterRole").value.trim() || "[Role]";
+  const proof =
+    document.querySelector("#letterProof").value.trim() ||
+    "I can bring relevant experience, careful execution, and clear communication to the team.";
+
+  coverOutput.textContent = `Dear ${company} hiring team,
+
+I am excited to apply for the ${role} role at ${company}. I am interested in this opportunity because it matches the kind of work where I can contribute quickly, communicate clearly, and keep improving the details that matter.
+
+One relevant example from my background: ${proof}
+
+I would welcome the chance to discuss how my experience can support the team. Thank you for your time and consideration.
+
+Best regards,
+[Your Name]`;
+});
+
+copyCoverLetter.addEventListener("click", () => {
+  copyText(coverOutput.textContent, copyCoverLetter, "Copied");
+});

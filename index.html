@@ -17,6 +17,7 @@
       <nav>
         <a href="#builder">Builder</a>
         <a href="#splitter">Splitter</a>
+        <a href="#career-tools">Career Tools</a>
         <a href="#kit">Resume Kit</a>
         <a href="privacy.html">Privacy</a>
       </nav>
@@ -149,6 +150,109 @@
               Download extracted PDF
             </a>
           </aside>
+        </div>
+      </section>
+
+      <section id="career-tools" class="tool-section">
+        <div class="section-heading">
+          <p class="eyebrow">Free career tools</p>
+          <h2>Clean up the details before you apply</h2>
+          <p>
+            Generate recruiter-friendly file names, check your resume against
+            common ATS issues, and draft a focused cover letter without sending
+            your private documents anywhere.
+          </p>
+        </div>
+
+        <div class="mini-tool-grid">
+          <form class="card form-card" id="filenameForm">
+            <p class="eyebrow">File naming</p>
+            <h3>Resume file name generator</h3>
+            <label>
+              Your name
+              <input id="candidateName" type="text" placeholder="Jane Chen" />
+            </label>
+            <label>
+              Target role
+              <input id="targetRole" type="text" placeholder="Product Manager" />
+            </label>
+            <label>
+              Company
+              <input id="targetCompany" type="text" placeholder="Stripe" />
+            </label>
+            <button class="button primary full" type="submit">
+              Generate File Names
+            </button>
+            <div class="report-output compact" id="filenameOutput">
+              Fill out the fields to generate clean PDF names.
+            </div>
+            <button class="button secondary full" id="copyFilenames" type="button">
+              Copy File Names
+            </button>
+          </form>
+
+          <form class="card form-card" id="atsForm">
+            <p class="eyebrow">ATS checklist</p>
+            <h3>Resume quality check</h3>
+            <label class="check-row">
+              <input type="checkbox" name="ats" value="Contact details are visible" />
+              Contact details are visible
+            </label>
+            <label class="check-row">
+              <input type="checkbox" name="ats" value="Resume includes target job keywords" />
+              Resume includes target job keywords
+            </label>
+            <label class="check-row">
+              <input type="checkbox" name="ats" value="Achievements include numbers or outcomes" />
+              Achievements include numbers or outcomes
+            </label>
+            <label class="check-row">
+              <input type="checkbox" name="ats" value="No heavy tables, images, or text boxes" />
+              No heavy tables, images, or text boxes
+            </label>
+            <label class="check-row">
+              <input type="checkbox" name="ats" value="File name includes your name and target role" />
+              File name includes your name and target role
+            </label>
+            <button class="button primary full" type="submit">
+              Score Resume
+            </button>
+            <div class="report-output compact" id="atsOutput">
+              Check the items you already have, then generate a quick score.
+            </div>
+          </form>
+
+          <form class="card form-card wide-card" id="coverForm">
+            <p class="eyebrow">Cover letter</p>
+            <h3>Simple cover letter starter</h3>
+            <div class="inline-fields">
+              <label>
+                Company
+                <input id="letterCompany" type="text" placeholder="Stripe" />
+              </label>
+              <label>
+                Role
+                <input id="letterRole" type="text" placeholder="Product Manager" />
+              </label>
+            </div>
+            <label>
+              Your strongest proof
+              <textarea
+                id="letterProof"
+                rows="4"
+                placeholder="I improved onboarding conversion by 18% and worked with engineering, sales, and support teams."
+              ></textarea>
+            </label>
+            <button class="button primary full" type="submit">
+              Generate Cover Letter
+            </button>
+            <div class="report-output" id="coverOutput">
+              Add a company, role, and proof point to generate a reusable draft.
+            </div>
+            <button class="button secondary full" id="copyCoverLetter" type="button">
+              Copy Cover Letter
+            </button>
+          </form>
         </div>
       </section>
 
