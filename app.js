@@ -207,12 +207,12 @@ splitForm.addEventListener("submit", async (event) => {
 
 updateFileList();
 
-const slugPart = (value) =>
-  value
+const slugPart = (value, fallback) =>
+  (value.trim() || fallback)
     .trim()
     .replace(/[^a-zA-Z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "")
-    || "Your-Name";
+    || fallback;
 
 const copyText = async (text, button, label) => {
   if (!text.trim()) return;
@@ -230,9 +230,9 @@ const copyText = async (text, button, label) => {
 
 filenameForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  const name = slugPart(document.querySelector("#candidateName").value);
-  const role = slugPart(document.querySelector("#targetRole").value);
-  const company = slugPart(document.querySelector("#targetCompany").value);
+  const name = slugPart(document.querySelector("#candidateName").value, "Jane-Chen");
+  const role = slugPart(document.querySelector("#targetRole").value, "Product-Manager");
+  const company = slugPart(document.querySelector("#targetCompany").value, "Stripe");
 
   filenameOutput.textContent = [
     `${name}-${role}-Resume.pdf`,
