@@ -430,6 +430,32 @@ textarea {
   margin-bottom: 14px;
 }
 
+.experience-item {
+  background: #fbfcff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  margin-bottom: 14px;
+  padding: 14px;
+}
+
+.experience-item-header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.experience-item-header h4 {
+  font-size: 15px;
+  margin: 0;
+}
+
+.button.small {
+  font-size: 13px;
+  min-height: 34px;
+  padding: 8px 12px;
+}
+
 .resume-preview-panel {
   position: sticky;
   top: 92px;
@@ -521,6 +547,10 @@ textarea {
 .resume-role span {
   color: #64748b;
   font-size: 12px;
+}
+
+.resume-job {
+  margin-bottom: 14px;
 }
 
 .resume-preview ul {

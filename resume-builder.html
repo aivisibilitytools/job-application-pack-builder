@@ -136,35 +136,45 @@
 
             <div class="form-section">
               <h3>Experience</h3>
-              <div class="inline-fields">
-                <label>
-                  Company
-                  <input id="expCompany" type="text" placeholder="Acme SaaS" />
-                </label>
-                <label>
-                  Job title
-                  <input id="expTitle" type="text" placeholder="Product Manager" />
-                </label>
-              </div>
-              <div class="inline-fields">
-                <label>
-                  Location
-                  <input id="expLocation" type="text" placeholder="Remote" />
-                </label>
-                <label>
-                  Dates
-                  <input id="expDates" type="text" placeholder="Jan 2021 - Present" />
-                </label>
-              </div>
-              <label>
-                Bullet points, one per line
-                <textarea
-                  id="expBullets"
-                  rows="5"
-                  placeholder="Improved onboarding completion by 18% by redesigning activation emails and first-run product prompts.
+              <div id="experienceList">
+                <div class="experience-item" data-index="0">
+                  <div class="experience-item-header">
+                    <h4>Experience 1</h4>
+                  </div>
+                  <div class="inline-fields">
+                    <label>
+                      Company
+                      <input id="expCompany0" type="text" placeholder="Acme SaaS" />
+                    </label>
+                    <label>
+                      Job title
+                      <input id="expTitle0" type="text" placeholder="Product Manager" />
+                    </label>
+                  </div>
+                  <div class="inline-fields">
+                    <label>
+                      Location
+                      <input id="expLocation0" type="text" placeholder="Remote" />
+                    </label>
+                    <label>
+                      Dates
+                      <input id="expDates0" type="text" placeholder="Jan 2021 - Present" />
+                    </label>
+                  </div>
+                  <label>
+                    Bullet points, one per line
+                    <textarea
+                      id="expBullets0"
+                      rows="5"
+                      placeholder="Improved onboarding completion by 18% by redesigning activation emails and first-run product prompts.
 Partnered with engineering and sales to launch a self-serve trial motion that generated 240 qualified leads in one quarter."
-                ></textarea>
-              </label>
+                    ></textarea>
+                  </label>
+                </div>
+              </div>
+              <button class="button secondary full" id="addExperience" type="button">
+                Add another experience
+              </button>
             </div>
 
             <div class="form-section">
