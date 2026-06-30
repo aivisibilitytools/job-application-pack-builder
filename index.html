@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Free Job Application PDF Pack Builder</title>
+    <title>Free Resume Builder and Job Application Toolkit</title>
     <meta
       name="description"
-      content="Merge resumes, cover letters, portfolios, certificates, and references into one job application PDF pack. Split PDF page ranges in your browser. No upload required."
+      content="Create a US-style resume PDF, check ATS details, generate cover letters, merge application PDFs, and buy a practical resume application kit. No upload required."
     />
     <link rel="stylesheet" href="style.css" />
     <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
@@ -15,10 +15,10 @@
     <header class="topbar">
       <a class="brand" href="index.html">Application Pack Builder</a>
       <nav>
-        <a href="#builder">Builder</a>
-        <a href="#splitter">Splitter</a>
         <a href="resume-builder.html">Resume Builder</a>
         <a href="#career-tools">Career Tools</a>
+        <a href="#builder">PDF Pack</a>
+        <a href="#splitter">Splitter</a>
         <a href="#kit">Resume Kit</a>
         <a href="privacy.html">Privacy</a>
       </nav>
@@ -28,16 +28,16 @@
       <section class="hero">
         <div class="hero-copy">
           <p class="eyebrow">For job seekers and career switchers</p>
-          <h1>Build a clean job application PDF pack in your browser.</h1>
+          <h1>Create a polished resume and application pack.</h1>
           <p class="subhead">
-            Combine your resume, cover letter, portfolio, certificates, and
-            references into one polished PDF. Reorder files, split page ranges,
-            and download everything without uploading private documents.
+            Build a US-style resume PDF, check application details, write a
+            focused cover letter, and package your resume, portfolio, and
+            references without uploading private documents.
           </p>
           <div class="hero-actions">
-            <a class="button primary" href="#builder">Build Application Pack</a>
-            <a class="button secondary" href="resume-builder.html">Create Resume PDF</a>
-            <a class="button secondary" href="#kit">View Resume Kit</a>
+            <a class="button primary" href="resume-builder.html">Create Resume PDF</a>
+            <a class="button secondary" href="#career-tools">Check Application</a>
+            <a class="button secondary" href="#kit">Get the $12 Kit</a>
           </div>
         </div>
         <div class="hero-panel" aria-label="Application pack preview">
@@ -48,113 +48,47 @@
             <div class="doc-card refs">References</div>
           </div>
           <ul>
-            <li>Merge PDFs locally</li>
-            <li>Move files up or down</li>
-            <li>Split selected page ranges</li>
             <li>Create a US-style resume PDF</li>
-            <li>Download a single application pack</li>
+            <li>Check ATS and keyword gaps</li>
+            <li>Draft cover letters and follow-ups</li>
+            <li>Merge and split PDFs locally</li>
+            <li>Package everything for each job</li>
             <li>No account, no upload, no server</li>
           </ul>
         </div>
       </section>
 
-      <section id="builder" class="tool-section">
+      <section id="start" class="tool-section subtle">
         <div class="section-heading">
-          <p class="eyebrow">Free tool</p>
-          <h2>Resume + cover letter PDF merger</h2>
+          <p class="eyebrow">Start here</p>
+          <h2>Use the tools in this order</h2>
           <p>
-            Add PDF files in the order you want recruiters to read them. The
-            merge happens locally in your browser.
+            Most job seekers should start with the resume builder, then clean
+            up application details, then combine the final PDFs.
           </p>
         </div>
 
-        <div class="tool-grid">
-          <form class="card form-card" id="mergeForm">
-            <label>
-              Application pack name
-              <input id="packName" type="text" value="job-application-pack" />
-            </label>
-
-            <label class="drop-zone" for="pdfFiles">
-              <span>Upload resume, cover letter, portfolio, or certificates</span>
-              <strong>Select PDF files</strong>
-              <input id="pdfFiles" type="file" accept="application/pdf" multiple />
-            </label>
-
-            <div class="file-list" id="fileList">
-              <p class="empty-state">No PDFs added yet.</p>
-            </div>
-
-            <button class="button primary full" type="submit">Merge PDFs</button>
-            <p class="helper">
-              Tip: Put your resume first, then cover letter, then portfolio or
-              supporting documents.
-            </p>
-          </form>
-
-          <aside class="card result-card">
-            <p class="eyebrow">Output</p>
-            <h3>Your application pack</h3>
-            <div class="report-output" id="mergeStatus">
-              Upload at least two PDFs to create a downloadable application
-              pack.
-            </div>
-            <a id="downloadMerged" class="button secondary full disabled" download>
-              Download merged PDF
-            </a>
-          </aside>
-        </div>
-      </section>
-
-      <section id="splitter" class="tool-section subtle">
-        <div class="section-heading">
-          <p class="eyebrow">Free tool</p>
-          <h2>PDF page range splitter</h2>
-          <p>
-            Need only pages 1-2 of a long portfolio, or just one certificate?
-            Extract selected pages before building the final pack.
-          </p>
-        </div>
-
-        <div class="tool-grid">
-          <form class="card form-card" id="splitForm">
-            <label class="drop-zone" for="splitFile">
-              <span>Upload one PDF to split</span>
-              <strong>Select PDF file</strong>
-              <input id="splitFile" type="file" accept="application/pdf" />
-            </label>
-            <p class="helper" id="splitFileName">No PDF selected yet.</p>
-
-            <label>
-              Pages to keep
-              <input
-                id="pageRanges"
-                type="text"
-                placeholder="Example: 1-2, 5, 7-9"
-              />
-            </label>
-
-            <label>
-              Output file name
-              <input id="splitName" type="text" value="selected-pages" />
-            </label>
-
-            <button class="button primary full" type="submit">Extract Pages</button>
-            <p class="helper">
-              Use commas for multiple ranges. Example: 1-2, 4, 6-8.
-            </p>
-          </form>
-
-          <aside class="card result-card">
-            <p class="eyebrow">Output</p>
-            <h3>Your extracted PDF</h3>
-            <div class="report-output" id="splitStatus">
-              Upload a PDF and enter page ranges to extract selected pages.
-            </div>
-            <a id="downloadSplit" class="button secondary full disabled" download>
-              Download extracted PDF
-            </a>
-          </aside>
+        <div class="workflow-grid">
+          <a class="card workflow-card" href="resume-builder.html">
+            <span>1</span>
+            <h3>Create Resume PDF</h3>
+            <p>Fill US-style resume sections, choose a template, and save as PDF.</p>
+          </a>
+          <a class="card workflow-card" href="#career-tools">
+            <span>2</span>
+            <h3>Check Application Details</h3>
+            <p>Generate file names, check ATS readiness, match keywords, and draft emails.</p>
+          </a>
+          <a class="card workflow-card" href="#builder">
+            <span>3</span>
+            <h3>Build PDF Pack</h3>
+            <p>Merge resume, cover letter, portfolio, certificates, and references.</p>
+          </a>
+          <a class="card workflow-card" href="#kit">
+            <span>4</span>
+            <h3>Upgrade With Templates</h3>
+            <p>Buy the low-cost kit when you want trackers, scripts, and reusable templates.</p>
+          </a>
         </div>
       </section>
 
@@ -339,25 +273,128 @@
         </div>
       </section>
 
+      <section id="builder" class="tool-section subtle">
+        <div class="section-heading">
+          <p class="eyebrow">Final PDF tools</p>
+          <h2>Build the PDF pack you send to recruiters</h2>
+          <p>
+            After your resume and cover letter are ready, combine them with a
+            portfolio, certificates, references, or work samples in the order
+            you want recruiters to read them.
+          </p>
+        </div>
+
+        <div class="tool-grid">
+          <form class="card form-card" id="mergeForm">
+            <label>
+              Application pack name
+              <input id="packName" type="text" value="job-application-pack" />
+            </label>
+
+            <label class="drop-zone" for="pdfFiles">
+              <span>Upload resume, cover letter, portfolio, or certificates</span>
+              <strong>Select PDF files</strong>
+              <input id="pdfFiles" type="file" accept="application/pdf" multiple />
+            </label>
+
+            <div class="file-list" id="fileList">
+              <p class="empty-state">No PDFs added yet.</p>
+            </div>
+
+            <button class="button primary full" type="submit">Merge PDFs</button>
+            <p class="helper">
+              Tip: Put your resume first, then cover letter, then portfolio or
+              supporting documents.
+            </p>
+          </form>
+
+          <aside class="card result-card">
+            <p class="eyebrow">Output</p>
+            <h3>Your application pack</h3>
+            <div class="report-output" id="mergeStatus">
+              Upload at least two PDFs to create a downloadable application
+              pack.
+            </div>
+            <a id="downloadMerged" class="button secondary full disabled" download>
+              Download merged PDF
+            </a>
+          </aside>
+        </div>
+      </section>
+
+      <section id="splitter" class="tool-section">
+        <div class="section-heading">
+          <p class="eyebrow">Supporting PDF tool</p>
+          <h2>Extract only the pages you need</h2>
+          <p>
+            Need only pages 1-2 of a long portfolio, or just one certificate?
+            Split page ranges before building the final application pack.
+          </p>
+        </div>
+
+        <div class="tool-grid">
+          <form class="card form-card" id="splitForm">
+            <label class="drop-zone" for="splitFile">
+              <span>Upload one PDF to split</span>
+              <strong>Select PDF file</strong>
+              <input id="splitFile" type="file" accept="application/pdf" />
+            </label>
+            <p class="helper" id="splitFileName">No PDF selected yet.</p>
+
+            <label>
+              Pages to keep
+              <input
+                id="pageRanges"
+                type="text"
+                placeholder="Example: 1-2, 5, 7-9"
+              />
+            </label>
+
+            <label>
+              Output file name
+              <input id="splitName" type="text" value="selected-pages" />
+            </label>
+
+            <button class="button primary full" type="submit">Extract Pages</button>
+            <p class="helper">
+              Use commas for multiple ranges. Example: 1-2, 4, 6-8.
+            </p>
+          </form>
+
+          <aside class="card result-card">
+            <p class="eyebrow">Output</p>
+            <h3>Your extracted PDF</h3>
+            <div class="report-output" id="splitStatus">
+              Upload a PDF and enter page ranges to extract selected pages.
+            </div>
+            <a id="downloadSplit" class="button secondary full disabled" download>
+              Download extracted PDF
+            </a>
+          </aside>
+        </div>
+      </section>
+
       <section id="kit" class="pricing">
         <div class="section-heading">
-          <p class="eyebrow">Paid download idea</p>
-          <h2>Turn the free tool into a resume template pack</h2>
+          <p class="eyebrow">Paid toolkit</p>
+          <h2>Get the complete Resume Application Kit</h2>
           <p>
-            Sell a low-priced kit for job seekers who need more than a PDF
-            merger: resume structure, cover letters, follow-up emails, and an
-            application tracker.
+            The free tools help you build files. The paid kit gives you the
+            reusable templates, tracker, scripts, and checklists to run a more
+            organized job search.
           </p>
         </div>
 
         <div class="price-grid">
           <div class="card price-card">
-            <h3>Free Application Builder</h3>
+            <h3>Free Tools</h3>
             <p class="price">$0</p>
             <ul>
+              <li>US-style resume PDF builder</li>
+              <li>ATS and keyword checks</li>
+              <li>Cover letter starter</li>
               <li>Merge PDFs locally</li>
               <li>Extract page ranges</li>
-              <li>Download application pack</li>
               <li>No signup required</li>
             </ul>
           </div>
@@ -365,12 +402,14 @@
           <div class="card price-card featured">
             <h3>Resume Application Kit</h3>
             <p class="price">$12</p>
+            <p class="helper">One-time purchase. Delivered by email while Gumroad payouts are being set up.</p>
             <ul>
-              <li>ATS resume checklist</li>
-              <li>Cover letter templates</li>
+              <li>ATS resume quality checklist</li>
+              <li>Cover letter template pack</li>
               <li>Application tracker spreadsheet</li>
-              <li>Follow-up email scripts</li>
+              <li>Recruiter follow-up email scripts</li>
               <li>Portfolio PDF order templates</li>
+              <li>Application pack checklist</li>
             </ul>
             <a
               class="button primary full"

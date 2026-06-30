@@ -218,6 +218,38 @@ li {
   text-align: center;
 }
 
+.workflow-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0 auto;
+  max-width: 1180px;
+}
+
+.workflow-card {
+  box-shadow: none;
+  display: block;
+  padding: 22px;
+}
+
+.workflow-card span {
+  align-items: center;
+  background: var(--accent);
+  border-radius: 999px;
+  color: #ffffff;
+  display: inline-flex;
+  font-weight: 900;
+  height: 32px;
+  justify-content: center;
+  margin-bottom: 16px;
+  width: 32px;
+}
+
+.workflow-card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
 .tool-grid,
 .price-grid,
 .mini-tool-grid {
@@ -638,6 +670,7 @@ footer a {
   .tool-grid,
   .price-grid,
   .mini-tool-grid,
+  .workflow-grid,
   .resume-builder-grid,
   .inline-fields {
     grid-template-columns: 1fr;
