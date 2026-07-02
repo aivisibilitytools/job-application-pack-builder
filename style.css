@@ -737,3 +737,87 @@ footer a {
     width: 100%;
   }
 }
+
+/* Unified privacy-first SaaS redesign overrides */
+:root {
+  --bg: #f7f7ff;
+  --ink: #111827;
+  --muted: #526071;
+  --line: #d9ddf3;
+  --accent: #4f46e5;
+  --accent-dark: #3730a3;
+  --violet: #7c3aed;
+  --green: #0f766e;
+  --soft: #eef2ff;
+}
+
+body {
+  background:
+    radial-gradient(circle at 18% 0%, rgba(124, 58, 237, 0.1), transparent 32%),
+    linear-gradient(180deg, #fbfbff 0%, var(--bg) 52%, #ffffff 100%);
+}
+
+.topbar {
+  background: rgba(251, 251, 255, 0.92);
+  backdrop-filter: blur(16px);
+}
+
+.button.primary {
+  background: linear-gradient(135deg, var(--accent), var(--violet));
+  border-color: transparent;
+}
+
+.button.primary:hover {
+  background: linear-gradient(135deg, var(--accent-dark), #5b21b6);
+}
+
+.hero-panel,
+.card,
+.price-card,
+.resume-preview {
+  border-color: var(--line);
+  box-shadow: 0 24px 70px rgba(79, 70, 229, 0.1);
+}
+
+.featured {
+  border-color: rgba(124, 58, 237, 0.5);
+}
+
+.doc-card.resume,
+.doc-card.portfolio {
+  background: linear-gradient(135deg, var(--accent), var(--violet));
+}
+
+.next-tool-section {
+  padding-top: 0;
+}
+
+.next-tool-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0 auto;
+  max-width: 1040px;
+}
+
+.next-tool-card {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 18px 54px rgba(79, 70, 229, 0.1);
+  padding: 24px;
+}
+
+.next-tool-card.featured {
+  border-color: rgba(124, 58, 237, 0.48);
+}
+
+.next-tool-card h2 {
+  margin: 6px 0 10px;
+}
+
+@media (max-width: 760px) {
+  .next-tool-grid {
+    grid-template-columns: 1fr;
+  }
+}
