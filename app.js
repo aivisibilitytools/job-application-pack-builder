@@ -31,6 +31,11 @@ const followupOutput = document.querySelector("#followupOutput");
 let selectedFiles = [];
 let activeUrls = [];
 
+const trackEvent = (name, params = {}) => {
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event: name, ...params });
+};
+
 const revokeUrls = () => {
   activeUrls.forEach((url) => URL.revokeObjectURL(url));
   activeUrls = [];
@@ -79,6 +84,7 @@ const moveFile = (index, direction) => {
 pdfFilesInput.addEventListener("change", () => {
   selectedFiles = [...selectedFiles, ...Array.from(pdfFilesInput.files)];
   pdfFilesInput.value = "";
+  trackEvent("tool_start", { tool: "pdf_pack_builder", file_count: selectedFiles.length });
   updateFileList();
 });
 
@@ -99,6 +105,7 @@ fileList.addEventListener("click", (event) => {
 splitFile.addEventListener("change", () => {
   const file = splitFile.files[0];
   splitFileName.textContent = file ? `Selected: ${file.name}` : "No PDF selected yet.";
+  if (file) trackEvent("tool_start", { tool: "pdf_split", file_name: file.name });
 });
 
 const createDownload = (anchor, bytes, fileName) => {
@@ -112,6 +119,7 @@ const createDownload = (anchor, bytes, fileName) => {
 
 mergeForm.addEventListener("submit", async (event) => {
   event.preventDefault();
+  trackEvent("tool_start", { tool: "pdf_merge", file_count: selectedFiles.length });
   revokeUrls();
   downloadMerged.classList.add("disabled");
 
@@ -145,6 +153,7 @@ mergeForm.addEventListener("submit", async (event) => {
       document.querySelector("#packName").value.trim() || "job-application-pack";
     createDownload(downloadMerged, mergedBytes, `${packName}.pdf`);
     mergeStatus.textContent = `Done. Merged ${selectedFiles.length} PDFs into one application pack.`;
+    trackEvent("tool_complete", { tool: "pdf_merge", file_count: selectedFiles.length });
   } catch (error) {
     mergeStatus.textContent =
       "Could not merge these PDFs. Encrypted or damaged PDFs may not work.";
@@ -178,6 +187,7 @@ const parseRanges = (value, totalPages) => {
 
 splitForm.addEventListener("submit", async (event) => {
   event.preventDefault();
+  trackEvent("tool_start", { tool: "pdf_split" });
   revokeUrls();
   downloadSplit.classList.add("disabled");
 
@@ -212,6 +222,7 @@ splitForm.addEventListener("submit", async (event) => {
       document.querySelector("#splitName").value.trim() || "selected-pages";
     createDownload(downloadSplit, splitBytes, `${splitName}.pdf`);
     splitStatus.textContent = `Done. Extracted ${selectedPages.length} page(s).`;
+    trackEvent("tool_complete", { tool: "pdf_split", pages: selectedPages.length });
   } catch (error) {
     splitStatus.textContent =
       "Could not split this PDF. Encrypted or damaged PDFs may not work.";
@@ -231,6 +242,7 @@ const copyText = async (text, button, label) => {
   if (!text.trim()) return;
   try {
     await navigator.clipboard.writeText(text);
+    trackEvent("copy_output", { tool: button.id || "job_application_tool" });
     const original = button.textContent;
     button.textContent = label;
     window.setTimeout(() => {
@@ -243,6 +255,7 @@ const copyText = async (text, button, label) => {
 
 filenameForm.addEventListener("submit", (event) => {
   event.preventDefault();
+  trackEvent("tool_start", { tool: "resume_filename_generator" });
   const name = slugPart(document.querySelector("#candidateName").value, "Jane-Chen");
   const role = slugPart(document.querySelector("#targetRole").value, "Product-Manager");
   const company = slugPart(document.querySelector("#targetCompany").value, "Stripe");
@@ -253,6 +266,7 @@ filenameForm.addEventListener("submit", (event) => {
     `${name}-${company}-Application-Pack.pdf`,
     `${name}-${role}-Portfolio.pdf`,
   ].join("\n");
+  trackEvent("tool_complete", { tool: "resume_filename_generator" });
 });
 
 copyFilenames.addEventListener("click", () => {
@@ -261,6 +275,7 @@ copyFilenames.addEventListener("click", () => {
 
 atsForm.addEventListener("submit", (event) => {
   event.preventDefault();
+  trackEvent("tool_start", { tool: "ats_readiness_check" });
   const checked = [...atsForm.querySelectorAll("input[name='ats']:checked")];
   const total = atsForm.querySelectorAll("input[name='ats']").length;
   const score = Math.round((checked.length / total) * 100);
@@ -278,10 +293,12 @@ atsForm.addEventListener("submit", (event) => {
     "",
     "Tip: after improving your resume, rebuild the PDF pack with your resume first.",
   ].join("\n");
+  trackEvent("tool_complete", { tool: "ats_readiness_check", score });
 });
 
 coverForm.addEventListener("submit", (event) => {
   event.preventDefault();
+  trackEvent("tool_start", { tool: "cover_letter_generator" });
   const company = document.querySelector("#letterCompany").value.trim() || "[Company]";
   const role = document.querySelector("#letterRole").value.trim() || "[Role]";
   const proof =
@@ -298,6 +315,7 @@ I would welcome the chance to discuss how my experience can support the team. Th
 
 Best regards,
 [Your Name]`;
+  trackEvent("tool_complete", { tool: "cover_letter_generator" });
 });
 
 copyCoverLetter.addEventListener("click", () => {
@@ -329,6 +347,7 @@ const extractKeywords = (text) => {
 
 keywordForm.addEventListener("submit", (event) => {
   event.preventDefault();
+  trackEvent("tool_start", { tool: "keyword_gap_checker" });
   const jdText = document.querySelector("#jobDescription").value;
   const resumeTextValue = document.querySelector("#resumeText").value.toLowerCase();
   const keywords = extractKeywords(jdText);
@@ -354,6 +373,7 @@ keywordForm.addEventListener("submit", (event) => {
     "",
     "Tip: add missing words only where they are true and specific to your experience.",
   ].join("\n");
+  trackEvent("tool_complete", { tool: "keyword_gap_checker", score });
 });
 
 copyKeywordReport.addEventListener("click", () => {
@@ -362,6 +382,7 @@ copyKeywordReport.addEventListener("click", () => {
 
 interviewForm.addEventListener("submit", (event) => {
   event.preventDefault();
+  trackEvent("tool_start", { tool: "interview_question_builder" });
   const role = document.querySelector("#interviewRole").value.trim() || "this role";
   const company =
     document.querySelector("#interviewCompany").value.trim() || "this company";
@@ -380,10 +401,12 @@ interviewForm.addEventListener("submit", (event) => {
     "",
     "Answer tip: use Situation, Action, Result, then connect it back to the role.",
   ].join("\n");
+  trackEvent("tool_complete", { tool: "interview_question_builder" });
 });
 
 followupForm.addEventListener("submit", (event) => {
   event.preventDefault();
+  trackEvent("tool_start", { tool: "followup_email_generator" });
   const company =
     document.querySelector("#followupCompany").value.trim() || "hiring team";
   const role = document.querySelector("#followupRole").value.trim() || "the role";
@@ -401,4 +424,21 @@ Thank you for your time and consideration.
 
 Best regards,
 [Your Name]`;
+  trackEvent("tool_complete", { tool: "followup_email_generator" });
+});
+
+document.addEventListener("click", (event) => {
+  const link = event.target.closest("a");
+  if (!link) return;
+
+  const text = link.textContent.trim();
+  if (link.href.includes("gumroad.com")) {
+    trackEvent("gumroad_click", { url: link.href, text });
+  }
+  if (/kit|download|request/i.test(text)) {
+    trackEvent("kit_cta_click", { url: link.href, text });
+  }
+  if (link.id && link.id.toLowerCase().includes("download")) {
+    trackEvent("download_output", { id: link.id, text });
+  }
 });
